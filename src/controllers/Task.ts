@@ -102,5 +102,38 @@ const GetTaskById = async (req: Request, res: Response) => {
     });
   }
 };
+const DeleteTask = async (req: Request, res: Response) => {
+  const { id } = req.body;
 
-export { CreateTask, GetTasks, UpdateTask, GetTaskById };
+  try {
+    const task = await prisma.task.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+    });
+
+    if (!task) {
+      res.status(404).json({
+        status: "failed",
+        message: "Task not found",
+      });
+    }
+    await prisma.task.update({
+      where: {
+        id: parseInt(id),
+      },
+      data: { is_deleted: true },
+    });
+
+    res.status(200).json({
+      status: "success",
+      message: "Task deleted successfully",
+    });
+  } catch (error: any) {
+    res.status(400).json({
+      status: "failed",
+      message: error.message,
+    });
+  }
+};
+export { CreateTask, GetTasks, UpdateTask, GetTaskById, DeleteTask };
