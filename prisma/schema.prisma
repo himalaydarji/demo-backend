@@ -12,6 +12,7 @@ model Task {
   task_name     String
   task_description String
   is_completed  Boolean
+  is_deleted    Boolean
   created_at    DateTime @default(now())
   updated_at    DateTime @updatedAt
 }
