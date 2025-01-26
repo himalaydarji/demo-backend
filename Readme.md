@@ -41,3 +41,9 @@ open terminal and hit
 
 npm run dev or yarn dev
 
+
+=> video-demo.mp4 is the video for displaying the overview of functionality.
+
+**********things can be done**********
+- pagination can be applied for displaying tasks
+- searching functionality can be implemented
